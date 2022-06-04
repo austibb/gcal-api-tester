@@ -133,4 +133,36 @@ const output = events.reduce(
     (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
     'Events:\n');
 document.getElementById('content').innerText = output;
+
+// test
+var event = {
+    'summary': 'test event',
+    'location': '',
+    'description': 'test description',
+    'start': {
+        'dateTime': '2022-06-7T09:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'
+    },
+    'end': {
+        'dateTime': '2015-05-28T17:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'
+    },
+    'reminders': {
+        'useDefault': true
+    }
+};
+
+var request = gapi.client.calendar.events.insert({
+    'calendarId': 'primary',
+    'resource': event
+});
+
+function testEventFunction() {
+    request.execute(function (event) {
+        appendPre('Event created: ' + event.htmlLink);
+    });
+}
+
+$('#authorize_button').on('click', handleAuthClick);
+$('#testbutton').on('click', testEventFunction);
 }
