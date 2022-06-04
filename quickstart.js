@@ -163,6 +163,10 @@ function testEventFunction() {
     });
 };
 
-$('#authorize_button').on('click', handleAuthClick);
+function tester() {
+    console.log('click works');
+};
+
+$('#authorize_button').on('click', tester);
 $('#testbutton').on('click', testEventFunction);
-}
+};
