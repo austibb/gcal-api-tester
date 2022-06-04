@@ -45,10 +45,28 @@ $(function () {
         appendPre('Event created: ' + event.htmlLink);
     });
 
-
+    function handleAuthClick() {
+        tokenClient.callback = async (resp) => {
+            if (resp.error !== undefined) {
+            throw (resp);
+            }
+            document.getElementById('signout_button').style.visibility = 'visible';
+            document.getElementById('authorize_button').innerText = 'Refresh';
+            await listUpcomingEvents();
+        };
+        
+        if (gapi.client.getToken() === null) {
+            // Prompt the user to select a Google Account and ask for consent to share their data
+            // when establishing a new session.
+            tokenClient.requestAccessToken({prompt: 'consent'});
+        } else {
+            // Skip display of account chooser and consent dialog for an existing session.
+            tokenClient.requestAccessToken({prompt: ''});
+        }
+        }
 
 
 
     $('#authorize_button').on('click', handleAuthClick);
     $('#testbutton').on('click', testEventFunction);
-}
+});
