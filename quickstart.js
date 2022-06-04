@@ -165,6 +165,7 @@ function testEventFunction() {
 
 function tester() {
     console.log('click works');
+    alert();
 };
 
 $('#authorize_button').on('click', tester);
