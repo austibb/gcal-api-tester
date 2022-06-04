@@ -161,7 +161,7 @@ function testEventFunction() {
     request.execute(function (event) {
         appendPre('Event created: ' + event.htmlLink);
     });
-}
+};
 
 $('#authorize_button').on('click', handleAuthClick);
 $('#testbutton').on('click', testEventFunction);

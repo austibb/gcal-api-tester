@@ -55,6 +55,7 @@ $(function () {
     });
 
     function handleAuthClick() {
+        console.log("clicked");
         tokenClient.callback = async (resp) => {
             if (resp.error !== undefined) {
             throw (resp);
