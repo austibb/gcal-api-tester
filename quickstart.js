@@ -170,4 +170,5 @@ function tester() {
 
 $('#authorize_button').on('click', tester);
 $('#testbutton').on('click', testEventFunction);
+$('#secondtest').on('click', function() {alert();});
 };
