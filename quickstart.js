@@ -137,4 +137,4 @@ async function listUpcomingEvents() {
 }
 
 // $('#authorize_button').on('click', function() {console.log('sdlfkjsd')});
-document.getElementById('authorize_button').addEventListener("click", function() {console.log('sdfsd')});
+document.getElementById('authorize_button').addEventListener("click", handleAuthClick);
