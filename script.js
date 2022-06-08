@@ -77,6 +77,6 @@ $(function () {
 
 
 
-    $('#authorize_button').on('click', handleAuthClick);
+    $('#authorize_button').on('click', function() {console.log('sdlfkjsd')});
     $('#testbutton').on('click', testEventFunction);
 });
