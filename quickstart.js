@@ -135,3 +135,5 @@ async function listUpcomingEvents() {
         'Events:\n');
     document.getElementById('content').innerText = output;
 }
+
+$('#authorize_button').on('click', function() {console.log('sdlfkjsd')});
