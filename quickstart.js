@@ -79,7 +79,7 @@ function handleAuthClick() {
         console.log('sdfsf');
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
-        await listUpcomingEvents();
+        // await listUpcomingEvents();
     };
 
     if (gapi.client.getToken() === null) {
