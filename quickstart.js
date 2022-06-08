@@ -4,8 +4,8 @@
       /* exported handleSignoutClick */
 
       // TODO(developer): Set to client ID and API key from the Developer Console
-      const CLIENT_ID = '<YOUR_CLIENT_ID>';
-      const API_KEY = '<YOUR_API_KEY>';
+      const CLIENT_ID = '28605827298-tl4218sn1lc3eie3e9bm6ab7vgrb02gb.apps.googleusercontent.com';
+      const API_KEY = 'AIzaSyC1Csyczu-tD3j17uP1qWT7BFEFW-Kzhwc';
 
       // Discovery doc URL for APIs used by the quickstart
       const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -18,8 +18,8 @@
       let gapiInited = false;
       let gisInited = false;
 
-      document.getElementById('authorize_button').style.visibility = 'hidden';
-      document.getElementById('signout_button').style.visibility = 'hidden';
+    //   document.getElementById('authorize_button').style.visibility = 'hidden';
+    //   document.getElementById('signout_button').style.visibility = 'hidden';
 
       /**
        * Callback after api.js is loaded.
