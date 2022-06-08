@@ -14,7 +14,7 @@ const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+const SCOPES = 'https://www.googleapis.com/auth/calendar';
 
 let tokenClient;
 let gapiInited = false;
@@ -40,8 +40,11 @@ async function intializeGapiClient() {
         discoveryDocs: [DISCOVERY_DOC],
     });
     gapiInited = true;
+    // console.log('l;sdkfjs');
     maybeEnableButtons();
 }
+
+// intializeGapiClient();
 
 /**
  * Callback after Google Identity Services are loaded.
@@ -73,6 +76,7 @@ function handleAuthClick() {
         if (resp.error !== undefined) {
             throw (resp);
         }
+        console.log('sdfsf');
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
         await listUpcomingEvents();
@@ -119,6 +123,7 @@ async function listUpcomingEvents() {
             'orderBy': 'startTime',
         };
         response = await gapi.client.calendar.events.list(request);
+        console.log(response);
     } catch (err) {
         document.getElementById('content').innerText = err.message;
         return;
@@ -135,6 +140,3 @@ async function listUpcomingEvents() {
         'Events:\n');
     document.getElementById('content').innerText = output;
 }
-
-// $('#authorize_button').on('click', function() {console.log('sdlfkjsd')});
-document.getElementById('authorize_button').addEventListener("click", handleAuthClick);

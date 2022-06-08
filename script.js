@@ -26,57 +26,37 @@ $(function () {
     // function to handle form submission, and add holidays to users' calendars
     // function to prompt signout or view anotehr calendar
     function testEventFunction() {
-
-    };
-    var event = {
-        'summary': 'test event',
-        'location': '',
-        'description': 'test description',
-        'start': {
-            'dateTime': '2022-06-7T09:00:00-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'end': {
-            'dateTime': '2015-05-28T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'reminders': {
-            'useDefault': true
-        }
-    };
-
-    var request = gapi.client.calendar.events.insert({
-        'calendarId': 'primary',
-        'resource': event
-    });
-
-    request.execute(function (event) {
-        appendPre('Event created: ' + event.htmlLink);
-    });
-
-    function handleAuthClick() {
-        console.log("clicked");
-        tokenClient.callback = async (resp) => {
-            if (resp.error !== undefined) {
-            throw (resp);
+        console.log('test event function console log');
+        var event = {
+            'summary': 'test event',
+            'location': '',
+            'description': 'test description',
+            'start': {
+                'dateTime': '2022-06-08T09:00:00-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+                'dateTime': '2022-06-09T17:00:00-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'reminders': {
+                'useDefault': true
             }
-            document.getElementById('signout_button').style.visibility = 'visible';
-            document.getElementById('authorize_button').innerText = 'Refresh';
-            await listUpcomingEvents();
         };
-        
-        if (gapi.client.getToken() === null) {
-            // Prompt the user to select a Google Account and ask for consent to share their data
-            // when establishing a new session.
-            tokenClient.requestAccessToken({prompt: 'consent'});
-        } else {
-            // Skip display of account chooser and consent dialog for an existing session.
-            tokenClient.requestAccessToken({prompt: ''});
-        }
+
+        var request = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event
+        });
+        console.log(event);
+        request.execute(function (event) {
+            appendPre('Event created: ' + event.htmlLink);
+        });
     };
 
 
 
-    $('#authorize_button').on('click', function() {console.log('sdlfkjsd')});
-    $('#testbutton').on('click', testEventFunction);
+    $('#authorize_button').on('click', handleAuthClick);
+    $('#signout_button').on('click', testEventFunction);
+    $('#test_button').on('click', testEventFunction);
 });
