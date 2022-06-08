@@ -25,6 +25,16 @@ $(function () {
     // function to create holiday list form
     // function to handle form submission, and add holidays to users' calendars
     // function to prompt signout or view anotehr calendar
+    function loadCalendarApi() {
+        gapi.client.load('calendar', 'v3', insertEvent);
+    }
+
+    function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+    }
+
     function testEventFunction() {
         console.log('test event function console log');
         var event = {
@@ -44,15 +54,39 @@ $(function () {
             }
         };
 
-        var request = gapi.client.calendar.events.insert({
+        // var request = gapi.client.calendar.events.insert({
+        return gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource': event
-        });
-        console.log(event);
-        request.execute(function (event) {
-            appendPre('Event created: ' + event.htmlLink);
-        });
+        })
+            .then(function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+            },
+                function (err) { console.error("Execute error", err); });
+        // console.log(event);
+        // request.execute(function (event) {
+        //     appendPre('Event created: ' + event.htmlLink);
+        // });
     };
+
+    function execute() {
+        return gapi.client.calendar.events.insert({
+            "resource": {
+                "end": {
+                    "date": ""
+                },
+                "start": {
+                    "date": ""
+                }
+            }
+        })
+            .then(function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+            },
+                function (err) { console.error("Execute error", err); });
+    }
 
 
 
